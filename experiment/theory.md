@@ -36,6 +36,7 @@ A combination of two or more topologies, offering flexibility and scalability. F
 <img src="images/1.png" title="" />
 
 Fig 1: Different types of Network Topology
+
 Adapted from: https://networksimulationtools.com/network-topology-projects/
 
 &nbsp;
