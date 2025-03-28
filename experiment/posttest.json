@@ -2,37 +2,75 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "This is a Sample Question 1?",
+      "question": "1. In a gene interaction graph, a directed edge from Gene A to Gene B implies:",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Gene A and Gene B are co-expressed",
+        "b": "Gene A regulates Gene B",
+        "c": "Gene A inhibits Gene B permanently",
+        "d": "Gene A has no impact on Gene B"
       },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+      
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+
+    {
+      "question": "2. The significance of edge weights in gene interaction networks is:",
+      "answers": {
+        "a": "They indicate the relative strength of gene interactions",
+        "b": "They show the genetic similarity between species",
+        "c": "They help identify the total number of genes in a genome",
+        "d": "They measure the molecular size of genes"
       },
+      
       "correctAnswer": "a",
       "difficulty": "beginner"
     },
+
+
+
     {
-      "question": "This is a Sample Question 2?",
+      "question": "3. An application of Dijkstra’s Algorithm in biological systems is:",
       "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
+        "a": "Identifying the longest genetic sequence",
+        "b": "Finding the most efficient regulatory pathways in gene networks",
+        "c": "Determining protein folding structures",
+        "d": "Estimating the mutation rate in DNA"
       },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
+      
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+
+  
+
+
+    {
+      "question": "4. A network topology important in artificial neural networks because:",
+      "answers": {
+        "a": "It defines the arrangement of neurons and connections",
+        "b": "It controls the speed of data processing",
+        "c": "It determines the amount of data a network can store",
+        "d": "It acts as a firewall for protecting data"
       },
-      "correctAnswer": "c",
+      
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+
+
+
+
+    {
+      "question": "5. Which aspect of gene interaction networks can be modelled using graphs ?",
+      "answers": {
+        "a": "The sequence of DNA",
+        "b": "The interactions between genes",
+        "c": "The rate of protein synthesis",
+        "d": "The chemical composition of genes"
+      },
+     
+      "correctAnswer": "b",
       "difficulty": "beginner"
     }
   ]
