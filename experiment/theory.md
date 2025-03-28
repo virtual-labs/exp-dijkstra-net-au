@@ -31,3 +31,63 @@ Every node is directly connected to multiple other nodes, ensuring high reliabil
 
 #### 7.Hybrid Topology: 
 A combination of two or more topologies, offering flexibility and scalability. For example, a tree topology integrates multiple star networks into a hierarchical structure, making it ideal for large-scale enterprise networks.
+
+
+<img src="images/1.png" title="" />
+
+Fig 1: Different types of Network Topology
+Adapted from: https://networksimulationtools.com/network-topology-projects/
+
+&nbsp;
+
+## Dijkstra’s Algorithm in Gene Interactions
+In biological systems, genes interact through complex networks, influencing each other's expression and regulating essential cellular processes. These gene interaction networks can be represented as graphs, where genes are nodes and interactions between them are edges with associated weights. The distance between genes in such networks is a crucial factor in understanding gene regulation, as it reflects the strength, probability, or biological significance of their interactions.Calculating gene interaction distances helps in identifying functionally related genes, detecting disease-associated pathways, and optimizing drug targeting strategies. 
+
+Dijkstra's Algorithm, introduced by Edsger Dijkstra in 1956, is a fundamental algorithm used to determine the shortest paths from a single source vertex to all other vertices in a weighted graph. This algorithm operates on the principle of a greedy strategy, continually expanding the set of vertices with known shortest path estimates until all vertices have been processed. Dijkstra’s Algorithm determines the shortest path in a weighted network, can be applied to these gene networks to compute the most efficient regulatory pathways. This is particularly useful in genomics, where understanding the shortest functional route between a mutated gene and its downstream effects can reveal critical disease mechanisms and potential therapeutic targets. By analysing gene interaction distances using Dijkstra’s Algorithm, researchers can uncover key regulatory genes, improve precision medicine approaches, and enhance our understanding of genetic disorders.
+
+### Graph Theory Representation of Gene Interaction Networks
+Gene interaction networks can be effectively modelled using graph theory, a mathematical framework that helps represent complex biological relationships in an organized manner. In these networks, genes are represented as nodes (vertices), while interactions between genes—such as activation, inhibition, or co-expression—are represented as edges (connections). By using graph-based approaches, researchers can analyse regulatory relationships, identify key genes in biological pathways, and predict disease-related gene interactions.
+
+### Components of a Gene Interaction Network in Graph Theory
+#### 1.	Nodes (Vertices):  
+In a gene interaction network, each node represents a gene (Fig.2). These genes can be classified based on their function, such as transcription factors, signalling molecules, or metabolic enzymes. For example, in a cancer-related gene network, nodes might include genes such as TP53 (a tumour suppressor), BRCA1, MYC, and BAX, MDM2(which regulates TP53). Nodes help in visualizing how different genes are functionally linked within a biological system.
+
+#### 2.	Edges (Connections): 
+Edges represent functional relationships between genes, which can include activation, inhibition, or co-expression. If one gene regulates another by increasing its expression (activation) or suppressing it (inhibition), this interaction is represented as a directed edge (with an arrow indicating direction). In co-expression networks, genes with similar expression patterns relate to undirected edges. For instance, in a signalling pathway, if TP53 activates BAX (a pro-apoptotic gene), the edge between them would represent activation.
+
+•TP53 → BAX (Activation: TP53 promotes BAX expression, leading to apoptosis).
+•TP53 → MDM2 (Inhibition: TP53 suppresses MDM2, which otherwise degrades TP53 itself).
+
+##### •	Types of Edges:
+•Activation (→): One gene promotes the expression of another.
+
+•Inhibition (⊣): One gene suppresses the function of another.
+
+•Co-expression (—): Two genes are expressed together in a correlated manner.
+
+#### 3.	Directed vs. Undirected Graphs: 
+A directed graph is used when interactions have a direction (e.g., Gene A activates Gene B but not vice versa). An undirected graph is used when interactions are mutual (e.g., genes that co-express together without a known directional effect).
+
+•Directed: TP53 → BAX (TP53 regulates BAX, but not the other way around).
+
+•Undirected: PPI networks where proteins bind but do not regulate each other.
+
+#### 4.	Edge Weights: 
+Edges are assigned weights, which represent the strength, probability, or biological significance of the interaction. These weights can be derived from gene expression data, protein-protein interaction scores, or other biological measurements. For example, in a regulatory network, the weight between TP53 and BAX could be based on the strength of activation observed in experimental data. A higher weight may indicate a stronger regulatory effect, while a lower weight could suggest a weaker or indirect interaction.
+
+•TP53 → BAX (weight = 0.8): Strong activation of BAX by TP53.
+
+•TP53 ⊣ MDM2 (weight = 0.6): Moderate inhibition of MDM2 by TP53.
+
+•BAX → CASP3 (weight = 0.9): High activation of CASP3 by BAX.
+
+
+<img src="images/2.png" title="" />
+
+Fig.2: Representation of gene interaction network using Graph theory
+
+&nbsp;
+
+Gene interaction networks provide a structured way to analyze complex biological processes, and graph theory offers a mathematical foundation to study these interactions. By representing genes as nodes and their relationships as edges, researchers can visualize how genes regulate each other, predict functional pathways, and identify critical genetic components in diseases. The incorporation of Dijkstra’s Algorithm further enhances this analysis by enabling the identification of the shortest and most efficient regulatory pathways, which is crucial in understanding gene signaling cascades, metabolic pathways, and transcriptional regulation. This approach helps in pinpointing key regulatory genes that influence cellular functions, enabling targeted genetic interventions and advancing precision medicine.
+
+The applications of gene interaction network analysis extend across various fields, including genomics, disease research, and drug discovery. In cancer research, for instance, shortest path algorithms help identify oncogenes and tumour suppressors, aiding in the development of targeted therapies. In pharmacogenomics, gene interaction networks assist in predicting drug responses by analyzing how genetic variations influence drug metabolism. Moreover, in systems biology, these network-based approaches facilitate the modelling of cellular responses to environmental changes, allowing scientists to understand disease mechanisms at a systems level. By integrating graph-based computational techniques into genomic research, we can accelerate the discovery of novel therapeutic strategies and deepen our understanding of the intricate biological networks governing life processes.
