@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Network Topology Analyzer</title>
+    <style>
+        /* Base styles */
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            background-image: linear-gradient(white, #87CEFA);
+        }
+        .node.highlighted {
+        fill: #ff5722;
+        stroke: #e64a19;
+    }
+
+        .container {
+            
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* Responsive grid layout */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Visualization container */
+        .visualization {
+            width: 100%;
+            height: 650px;
+            min-height: 700px;
+            border: 1px solid #ccc;
+            margin: 20px 0;
+        }
+
+        /* Responsive typography */
+        .at-item {
+            font-size: calc(1em + 1vw);
+            text-align: center;
+            margin: 20px 0;
+            color: #4f2037;
+            font-weight: bold;
+            margin-top: -3%;
+        }
+
+        /* Controls adjustments */
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+       
+
+        /* Mobile-specific adjustments */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .node {
+                r: 25px;
+            }
+
+            .node-label {
+                font-size: 12px;
+            }
+
+            .edge-label {
+                font-size: 12px;
+            }
+
+            .at-item {
+                font-size: 1.2em;
+                margin: 10px 0;
+            }
+
+            button, select {
+                flex-basis: 100%;
+            }
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #44a7f8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: sans-serif;
+            margin-left: 1%;
+        }
+        button:hover {
+            background-color: 	#1E90FF;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f4ea;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+
+        input[type="file"] {
+            margin: 10px 0;
+        }
+
+        select {
+            padding: 8px;
+            border-radius: 4px;
+        }
+        .node {
+            fill: 	#000080;
+            stroke: 	#000080;
+            stroke-width: 2;
+            cursor: pointer;
+            r: 35; /* Increased node radius from 25 */
+        }
+
+        .edge {
+            stroke: #666;
+            stroke-width: 2;
+        }
+        .node.unreachable {
+        fill: #cccccc;
+        stroke: #999999;
+    }
+        
+
+        .shortest-path {
+            stroke: #2268ff;
+            stroke-width: 4;
+        }
+        .faded-edge {
+        stroke: #cccccc;
+        stroke-width: 1;
+        opacity: 0.4;
+    }
+
+        .node-label {
+            fill: white;
+        font-size: 14px; /* Increased from 12px */
+        user-select: none;
+        text-anchor: middle; /* Add this for horizontal centering */
+        dominant-baseline: middle; /* Add this for vertical centering */
+        }
+        .edge-label {
+            font-size: 14px; /* Increased from 12px */
+            fill: #f10707;
+        }
+        .distance-value {
+        color: #FF5722; /* Orange-red color */
+        font-weight: bold;
+    }
+    .minicont{
+            background-color: rgb(255, 255, 255);
+            padding: 5%;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-top: -3%;
+        }
+ 
+
+        /* Arrow styling */
+        .arrow {
+            font-size: 14px;
+            margin-left: 5px;
+        }
+        td:first-child {
+        position: relative;
+    }
+    .main {
+            background-color: 	#e8f5f5;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 5%;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-height: fit-content;
+        }
+        .upload-section{
+            background-color:#e8f5f5;
+            padding: 1%;
+            border-radius: 10px;
+            margin-top: 5%;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        label {
+            padding: 10px 20px;
+            background-color: #44a7f8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            justify-content: center;
+            font-family: sans-serif;   
+            display: inline-block;  /* Change display type */
+            width: 94%;       
+            text-align: center;
+        }
+        .main2 {
+    background-color: #e8f5f5;
+    padding: 5%;
+    border-radius: 10px;
+    margin: 1rem auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 800px;
+    margin-top: -77%;
+    max-height: fit-content;
+}
+
+.guide-container {
+    padding: 1rem 2rem;
+}
+
+.step {
+    font-size: 0.95em;
+    text-align: left;
+    margin: 0.8rem 0;
+    padding-left: 1rem;
+    line-height: 1.5;
+    border-left: 3px solid #44a7f8;
+}
+
+
+        /* Existing styles remain unchanged below */
+        /* ... (keep all existing styles but remove fixed positioning and widths) ... */
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="images\logo.png" alt="Logo" style="max-width: 130px; height: auto;">
+        <div class='at-item'>Analyze Network Topology by Implementing Dijkstra’s Algorithm</div>
+
+        <div class="main-grid">
+            <div class="main">
+                <div style="position: relative; margin: 20px 0;">
+                    <label><b>Instruction</b></label><br><br>
+                    <div id="content">
+                        <div class="minicont">
+                    <p style="font-size: 0.90em;text-align: left;margin-left: 10%;" class="step" >1. Upload Data File: Click "Choose file" to upload your input file (.tsv format).</p><p style="font-size: 0.90em;text-align: left;margin-left: 10%;"class="step">2. Download Sample Template: Click "Sample file" to obtain a sample text file format reference or you can download the sample file from the tool 'STRING' in .tsv format.</p><p style="font-size: 0.90em;text-align: left;margin-left: 10%;"class="step">3. After uploading the sample file select a node. </p><p style="font-size: 0.90em;text-align: left;margin-left: 10%;"class="step">4. Click to 'Run Algorithm' to get the result.</p><p style="font-size: 0.90em;text-align: left;margin-left: 10%;"class="step">5. Drag the nodes to see its path. </p><p style="font-size: 0.90em;text-align: left;margin-left: 10%;"class="step">6. Use the "Reset" button to clear inputs and refresh the simulator.</p><br><br><br><br><br><br><br>   
+                    </div>
+                    
+                    <div class="minicont" style="margin-top: 3%;">
+                        <label><b>Graph Theory Approach in This Gene Co-expression Network</b></label><br><br>
+                    <div class="guide-container">
+                        <p class="step">The diagram represents a gene co-expression network, which is best analyzed using graph theory concepts.</p>
+                        <p class="step">A gene co-expression network is modeled as a graph 𝐺 =(𝑉,𝐸) where:<br>
+                            
+                            <span style='font-size:20px;'>&#9642;</span> Nodes (𝑉): Represent genes <br>
+                            <span style='font-size:20px;'>&#9642;</span> Edges (𝐸): Represent connections between genes based on their expression correlation.<br>
+                            <span style='font-size:20px;'>&#9642;</span> Edge Weights: The correlation values between genes, where higher values indicate stronger co-expression.</p>
+                        
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="upload-section">
+                <div class="upload-section">
+                    &nbsp;&nbsp;<b> Upload file:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="file" id="topologyFile" accept=".tsv"> <small>(Upload file in .tsv file format)</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="sample.tsv" download="sample_file.tsv"> <small>Sample File</small></a>
+                    
+               
+                <div class="controls">
+                    &nbsp;<b> Select node:</b>&nbsp;
+                    <select id="startNode"></select>
+                </div>
+                <button onclick="runDijkstra()">Run Dijkstra's Algorithm</button>
+                    <button onclick="clearSimulator()">Reset</button>
+
+                <svg id="graphVisualization" class="visualization" width="100%" height="100%"></svg>
+                    <div id="output" class="result"></div>
+            </div>
+        </div>
+
+       
+    </div>
+
+    <script>
+
+const svg = document.getElementById('graphVisualization');
+        const nodeRadius = 25;
+        let graph = {};
+        let nodes = new Set();
+        let nodePositions = {};
+        let draggedNode = null;
+        let startX, startY, initialX, initialY;
+          // Add global variables to store Dijkstra's results
+    let currentStartNode = null;
+    let currentPredecessors = null;
+    let currentDistances = null;
+
+
+        document.getElementById('topologyFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    parseTopology(e.target.result);
+                    populateNodeSelector();
+                    drawInitialGraph();
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        function parseTopology(content) {
+            graph = {};
+            nodes.clear();
+            const lines = content.split('\n');
+            
+            lines.forEach(line => {
+                if (line.startsWith('#') || line.trim() === '') return; // Skip header and empty lines
+                const columns = line.split('\t');
+                if (columns.length < 13) return;
+                
+                const source = columns[0];
+                const target = columns[1];
+                const weight = columns[12]; // Use combined_score as weight
+                
+                if (source && target && !isNaN(weight)) {
+                    nodes.add(source);
+                    nodes.add(target);
+                    
+                    if (!graph[source]) graph[source] = {};
+                    graph[source][target] = Number(weight);
+                }
+            });
+        }
+
+        function populateNodeSelector() {
+            const selector = document.getElementById('startNode');
+            selector.innerHTML = Array.from(nodes)
+                .map(node => `<option value="${node}">${node}</option>`)
+                .join('');
+        }
+
+        function drawInitialGraph() {
+            svg.innerHTML = '';
+            calculateNodePositions();
+            
+            const edgesGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            const nodesGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+
+            // Draw edges
+            Array.from(nodes).forEach(source => {
+                if (!graph[source]) return;
+                Object.entries(graph[source]).forEach(([target, weight]) => {
+                    if (source < target) { // Prevent duplicate edges
+                        const edge = createEdge(source, target, weight);
+                        edgesGroup.appendChild(edge);
+                    }
+                });
+            });
+
+            // Draw nodes
+            Array.from(nodes).forEach(node => {
+                const nodeElement = createNode(node, nodePositions[node].x, nodePositions[node].y);
+                nodesGroup.appendChild(nodeElement);
+            });
+
+            svg.appendChild(edgesGroup);
+            svg.appendChild(nodesGroup);
+        }
+
+        function calculateNodePositions() {
+            const nodesArray = Array.from(nodes);
+            const centerX = svg.clientWidth / 2;
+            const centerY = 400; // Increased from 250
+            const radius = Math.min(300, svg.clientWidth/3); // Increased from 200
+            const angleStep = (2 * Math.PI) / nodesArray.length;
+            
+            nodesArray.forEach((node, index) => {
+                const angle = angleStep * index;
+                nodePositions[node] = {
+                    x: centerX + radius * Math.cos(angle),
+                    y: centerY + radius * Math.sin(angle)
+                };
+            });
+        }
+
+        // Modify runDijkstra to store results
+    function runDijkstra() {
+        const startNode = document.getElementById('startNode').value;
+        if (!nodes.has(startNode)) {
+            alert('Invalid start node!');
+            return;
+        }
+
+        const { distances, predecessors } = dijkstra(graph, startNode);
+        currentStartNode = startNode;
+        currentPredecessors = predecessors;
+        currentDistances = distances;
+
+        // Redraw graph with new node positions
+        calculateNodePositionsBasedOnDistances(distances, startNode);
+        drawGraph(distances);
+        showResult(`Dijkstra's algorithm completed for ${startNode}. Click any node to see its path.`);
+    }
+
+        function calculateNodePositionsBasedOnDistances(distances, startNode) {
+        const centerX = svg.clientWidth / 2;
+        const centerY = 400;
+        const maxRadius = Math.min(300, svg.clientWidth / 3);
+        nodePositions = {};
+
+        // Position start node at center
+        nodePositions[startNode] = { x: centerX, y: centerY };
+
+        // Group nodes by distance
+        const groups = {};
+        const allNodes = Array.from(nodes);
+        allNodes.forEach(node => {
+            if (node === startNode) return;
+            const distance = distances[node];
+            if (distance === Infinity) return;
+            if (!groups[distance]) groups[distance] = [];
+            groups[distance].push(node);
+        });
+
+        // Sort distances and calculate positions
+        const sortedDistances = Object.keys(groups).map(Number).sort((a, b) => a - b);
+        const maxDistance = sortedDistances.length > 0 ? Math.max(...sortedDistances) : 0;
+
+        sortedDistances.forEach(distance => {
+            const nodesInGroup = groups[distance].sort();
+            const angleStep = (2 * Math.PI) / nodesInGroup.length;
+            const radius = maxDistance === 0 ? 0 : (distance / maxDistance) * maxRadius;
+            nodesInGroup.forEach((node, index) => {
+                const angle = angleStep * index;
+                nodePositions[node] = {
+                    x: centerX + radius * Math.cos(angle),
+                    y: centerY + radius * Math.sin(angle)
+                };
+            });
+        });
+
+        // Handle unreachable nodes
+        const unreachable = allNodes.filter(node => 
+            node !== startNode && (distances[node] === Infinity || !nodePositions[node]));
+        if (unreachable.length > 0) {
+            const unreachableRadius = maxRadius + 50;
+            const angleStep = (2 * Math.PI) / unreachable.length;
+            unreachable.forEach((node, index) => {
+                const angle = angleStep * index;
+                nodePositions[node] = {
+                    x: centerX + unreachableRadius * Math.cos(angle),
+                    y: centerY + unreachableRadius * Math.sin(angle)
+                };
+            });
+        }
+    }
+
+
+        function dijkstra(graph, start) {
+            const distances = {};
+            const predecessors = {};
+            const visited = new Set();
+            const priorityQueue = new PriorityQueue();
+
+            Array.from(nodes).forEach(node => {
+                distances[node] = node === start ? 0 : Infinity;
+                priorityQueue.enqueue(node, distances[node]);
+            });
+
+            while (!priorityQueue.isEmpty()) {
+                const { element: currentNode, priority: currentDistance } = priorityQueue.dequeue();
+                
+                if (visited.has(currentNode)) continue;
+                visited.add(currentNode);
+
+                if (!graph[currentNode]) continue;
+
+                Object.entries(graph[currentNode]).forEach(([neighbor, weight]) => {
+                    const newDistance = currentDistance + weight;
+                    if (newDistance < distances[neighbor]) {
+                        distances[neighbor] = newDistance;
+                        predecessors[neighbor] = currentNode;
+                        priorityQueue.enqueue(neighbor, newDistance);
+                    }
+                });
+            }
+
+            return { distances, predecessors };
+        }
+         
+        function drawGraph(distances) { // Accept distances as parameter
+        svg.innerHTML = '';
+        const edgesGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        const nodesGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+
+        // Draw edges
+        Array.from(nodes).forEach(source => {
+            if (!graph[source]) return;
+            Object.entries(graph[source]).forEach(([target, weight]) => {
+                if (source < target) {
+                    const edge = createEdge(source, target, weight);
+                    edgesGroup.appendChild(edge);
+                }
+            });
+        });
+
+        // Draw nodes
+        Array.from(nodes).forEach(node => {
+            if (nodePositions[node]) {
+                const nodeElement = createNode(node, nodePositions[node].x, nodePositions[node].y);
+                // Check using the passed distances parameter
+                if (distances && distances[node] === Infinity) {
+                    nodeElement.querySelector('circle').classList.add('unreachable');
+                }
+                nodesGroup.appendChild(nodeElement);
+            }
+        });
+
+        svg.appendChild(edgesGroup);
+        svg.appendChild(nodesGroup);
+    }
+    function displayResults(distances, predecessors, startNode) {
+        calculateNodePositionsBasedOnDistances(distances, startNode);
+        
+        // Clear existing visualization
+        svg.innerHTML = '';
+        
+        // Create groups for different edge types
+        const fadedEdgesGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        const shortestPathGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        const nodesGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+
+        // Draw all edges as faded first
+        Array.from(nodes).forEach(source => {
+            if (!graph[source]) return;
+            Object.entries(graph[source]).forEach(([target, weight]) => {
+                if (source < target) {
+                    const edge = createEdge(source, target, weight, false, true);
+                    fadedEdgesGroup.appendChild(edge);
+                }
+            });
+        });
+
+        // Draw shortest path edges
+        const shortestPathEdges = new Set();
+        Array.from(nodes).forEach(node => {
+            if (node !== startNode && predecessors[node]) {
+                let current = node;
+                while (predecessors[current]) {
+                    const edge = createEdge(predecessors[current], current, 
+                        graph[predecessors[current]][current], true);
+                    shortestPathGroup.appendChild(edge);
+                    shortestPathEdges.add(`${predecessors[current]}-${current}`);
+                    current = predecessors[current];
+                }
+            }
+        });
+
+        // Draw nodes
+        Array.from(nodes).forEach(node => {
+            if (nodePositions[node]) {
+                const nodeElement = createNode(node, nodePositions[node].x, nodePositions[node].y);
+                if (distances && distances[node] === Infinity) {
+                    nodeElement.querySelector('circle').classList.add('unreachable');
+                }
+                nodesGroup.appendChild(nodeElement);
+            }
+        });
+
+        // Add elements to SVG
+        svg.appendChild(fadedEdgesGroup);
+        svg.appendChild(shortestPathGroup);
+        svg.appendChild(nodesGroup);
+    }
+
+
+        // Add resize handler
+        window.addEventListener('resize', handleResize);
+        let resizeTimeout;
+
+        function handleResize() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                if (currentStartNode) {
+                    calculateNodePositionsBasedOnDistances(currentDistances, currentStartNode);
+                    drawGraph(currentDistances);
+                } else if (nodes.size > 0) {
+                    calculateNodePositions();
+                    drawInitialGraph();
+                }
+            }, 200);
+        }
+
+        // Modify node creation to include touch events
+        function createNode(label, x, y) {
+           
+            // ... existing code ...
+            const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        group.setAttribute('data-node', label);
+        
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', x);
+        circle.setAttribute('cy', y);
+        circle.setAttribute('r', nodeRadius);
+        circle.classList.add('node');
+        
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('x', x);
+        text.setAttribute('y', y);
+        text.classList.add('node-label');
+        text.textContent = label;
+        
+        group.appendChild(circle);
+        group.appendChild(text);
+
+        group.addEventListener('mousedown', startDrag);
+    group.addEventListener('mousemove', drag);
+    group.addEventListener('mouseup', endDrag);
+    group.addEventListener('mouseleave', endDrag);
+    
+    group.addEventListener('touchstart', startDrag);
+    group.addEventListener('touchmove', drag);
+    group.addEventListener('touchend', endDrag);
+    group.addEventListener('touchcancel', endDrag);
+
+   
+            group.addEventListener('click', (e) => {
+            e.stopPropagation();
+            handleNodeClick(label);
+        });
+
+
+            return group;
+        }
+
+        function endDrag() {
+    draggedNode = null;
+}
+
+function updateConnectedEdges(nodeName) {
+    const edges = svg.querySelectorAll('line');
+    edges.forEach(edge => {
+        const source = edge.parentNode.getAttribute('data-source');
+        const target = edge.parentNode.getAttribute('data-target');
+        
+        if (source === nodeName || target === nodeName) {
+            const sourcePos = nodePositions[source];
+            const targetPos = nodePositions[target];
+            
+            edge.setAttribute('x1', sourcePos.x);
+            edge.setAttribute('y1', sourcePos.y);
+            edge.setAttribute('x2', targetPos.x);
+            edge.setAttribute('y2', targetPos.y);
+            
+            // Update edge label position
+            const edgeText = edge.parentNode.querySelector('text');
+            const midX = (sourcePos.x + targetPos.x) / 2;
+            const midY = (sourcePos.y + targetPos.y) / 2;
+            if (edgeText) {
+                edgeText.setAttribute('x', midX);
+                edgeText.setAttribute('y', midY + 5);
+            }
+        }
+    });
+}
+
+        function handleNodeClick(clickedNode) {
+    if (!currentStartNode || !currentPredecessors) {
+        alert('Please run Dijkstra\'s algorithm first!');
+        return;
+    }
+
+    if (currentDistances[clickedNode] === Infinity) {
+        showResult(`${clickedNode} is unreachable from ${currentStartNode}`);
+        return;
+    }
+
+    // Trace path from clicked node back to start
+    const path = [clickedNode];
+    let current = clickedNode;
+    while (currentPredecessors[current]) {
+        current = currentPredecessors[current];
+        path.unshift(current);
+    }
+
+    // Highlight path
+    highlightPath(path);
+    showResult(`Shortest path to ${clickedNode}: ${path.join(' → ')} (Distance: <span class="distance-value">${currentDistances[clickedNode]}</span>)`);
+}
+
+function highlightPath(path) {
+    // Reset previous highlights
+    svg.querySelectorAll('.shortest-path').forEach(e => e.classList.remove('shortest-path'));
+    svg.querySelectorAll('.highlighted').forEach(e => e.classList.remove('highlighted'));
+
+    // Highlight nodes
+    path.forEach(node => {
+        const nodeElement = svg.querySelector(`[data-node="${node}"] circle`);
+        if (nodeElement) nodeElement.classList.add('highlighted');
+    });
+
+    // Highlight edges
+    for (let i = 0; i < path.length - 1; i++) {
+        const source = path[i];
+        const target = path[i + 1];
+        const edge = svg.querySelector(`[data-source="${source}"][data-target="${target}"] line`) ||
+                    svg.querySelector(`[data-source="${target}"][data-target="${source}"] line`);
+        if (edge) edge.classList.add('shortest-path');
+    }
+}
+        // Update drag functions to handle touch events
+        function startDrag(evt) {
+    evt.preventDefault();
+    draggedNode = evt.target.parentNode;
+    const circle = draggedNode.querySelector('circle');
+    
+    // Get initial positions from SVG attributes
+    initialX = parseFloat(circle.getAttribute('cx'));
+    initialY = parseFloat(circle.getAttribute('cy'));
+    
+    // Get starting coordinates based on input device
+    if (evt.type === 'touchstart') {
+        startX = evt.touches[0].clientX;
+        startY = evt.touches[0].clientY;
+    } else {
+        startX = evt.clientX;
+        startY = evt.clientY;
+    }
+}
+
+
+function drag(evt) {
+    if (!draggedNode) return;
+    evt.preventDefault();
+    
+    // Get current coordinates based on input device
+    let clientX, clientY;
+    if (evt.type === 'touchmove') {
+        clientX = evt.touches[0].clientX;
+        clientY = evt.touches[0].clientY;
+    } else {
+        clientX = evt.clientX;
+        clientY = evt.clientY;
+    }
+    
+    // Calculate delta movement
+    const dx = clientX - startX;
+    const dy = clientY - startY;
+    
+    // Calculate new position
+    const newX = initialX + dx;
+    const newY = initialY + dy;
+    
+    // Update node visual position
+    const circle = draggedNode.querySelector('circle');
+    const text = draggedNode.querySelector('text');
+    circle.setAttribute('cx', newX);
+    circle.setAttribute('cy', newY);
+    text.setAttribute('x', newX);
+    text.setAttribute('y', newY);
+    
+    // Update node position storage
+    const nodeName = draggedNode.getAttribute('data-node');
+    nodePositions[nodeName] = { x: newX, y: newY };
+    
+    // Update connected edges
+    updateConnectedEdges(nodeName);
+}
+
+
+
+    function createEdge(source, target, weight, isShortestPath = false, isFaded = false) {
+        const start = nodePositions[source];
+        const end = nodePositions[target];
+        
+        const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        group.setAttribute('data-source', source);
+        group.setAttribute('data-target', target);
+        
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', start.x);
+        line.setAttribute('y1', start.y);
+        line.setAttribute('x2', end.x);
+        line.setAttribute('y2', end.y);
+        
+        if (isShortestPath) {
+            line.classList.add('shortest-path');
+        } else if (isFaded) {
+            line.classList.add('faded-edge');
+        } else {
+            line.classList.add('edge');
+        }
+
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        const midX = (start.x + end.x) / 2;
+        const midY = (start.y + end.y) / 2;
+        text.setAttribute('x', midX);
+        text.setAttribute('y', midY + 5);
+        text.classList.add('edge-label');
+        text.textContent = weight;
+        
+        group.appendChild(line);
+        group.appendChild(text);
+        return group;
+    }
+        function clearSimulator() {
+            graph = {};
+            nodes.clear();
+            nodePositions = {};
+            document.getElementById('topologyFile').value = '';
+            document.getElementById('startNode').innerHTML = '';
+            svg.innerHTML = '';
+            showResult('');
+        }
+
+        function showResult(text) {
+        // Change textContent to innerHTML to render HTML elements
+        document.getElementById('output').innerHTML = text;
+    }
+
+        class PriorityQueue {
+            constructor() {
+                this.elements = [];
+            }
+
+            enqueue(element, priority) {
+                this.elements.push({ element, priority });
+                this.sort();
+            }
+
+            dequeue() {
+                return this.elements.shift();
+            }
+
+            isEmpty() {
+                return this.elements.length === 0;
+            }
+
+            sort() {
+                this.elements.sort((a, b) => a.priority - b.priority);
+            }
+        }
+
+        // Existing JavaScript code remains otherwise unchanged
+    </script>
+<script src="../assets/js/iframeResize.js"></script>
+        
+        </body>
+</html>
