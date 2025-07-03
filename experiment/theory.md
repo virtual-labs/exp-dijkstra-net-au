@@ -46,6 +46,21 @@ In biological systems, genes interact through complex networks, influencing each
 
 Dijkstra's Algorithm, introduced by Edsger Dijkstra in 1956, is a fundamental algorithm used to determine the shortest paths from a single source vertex to all other vertices in a weighted graph. This algorithm operates on the principle of a greedy strategy, continually expanding the set of vertices with known shortest path estimates until all vertices have been processed. Dijkstra’s Algorithm determines the shortest path in a weighted network, can be applied to these gene networks to compute the most efficient regulatory pathways. This is particularly useful in genomics, where understanding the shortest functional route between a mutated gene and its downstream effects can reveal critical disease mechanisms and potential therapeutic targets. By analysing gene interaction distances using Dijkstra’s Algorithm, researchers can uncover key regulatory genes, improve precision medicine approaches, and enhance our understanding of genetic disorders.
 
+&nbsp;
+
+
+### Understanding the Dijkstra’s Algorithm  
+Gene interaction networks are essential models used to represent how genes influence each other within biological systems. In these networks, genes are treated as nodes, and interactions such as activation or inhibition are represented as weighted edges. To analyse these networks effectively, especially to determine how signals propagate from one gene to another, algorithms from graph theory are employed. Among these, Dijkstra’s Algorithm is particularly well-suited for identifying the most efficient paths between genes in complex regulatory cascades.
+
+Dijkstra’s Algorithm operates on a weighted directed graph and is designed to find the shortest path from a given source node to all other nodes in the network. This is achieved by maintaining a set of tentative distances from the source, the source itself starts with a distance of zero, while all other nodes begin with an infinite distance. At each step, the algorithm selects the unvisited node with the smallest known distance and updates the distances to its neighboring nodes using the formula:
+
+<img src="images/t1.png" title="" />
+
+where u is the current node and v is a neighbor. This iterative process continues until all nodes have been visited, resulting in a complete mapping of shortest interaction paths from the source. Applying Dijkstra’s Algorithm to gene interaction networks enables researchers to explore regulatory efficiency and influence within the system. For example, if TP53 inhibits MDM2 (denoted as TP53 ⊣ MDM2), this relationship can be modelled as a weighted edge in the graph. By assigning edge weights that reflect interaction strength or biological significance, the algorithm helps identify not only direct relationships but also the most effective regulatory routes through intermediate genes. This is particularly useful for understanding signalling cascades, detecting potential therapeutic targets, and tracing the pathways involved in disease mechanisms such as cancer or genetic disorders.
+
+&nbsp;
+
+
 ### Graph Theory Representation of Gene Interaction Networks
 Gene interaction networks can be effectively modelled using graph theory, a mathematical framework that helps represent complex biological relationships in an organized manner. In these networks, genes are represented as nodes (vertices), while interactions between genes—such as activation, inhibition, or co-expression—are represented as edges (connections). By using graph-based approaches, researchers can analyse regulatory relationships, identify key genes in biological pathways, and predict disease-related gene interactions.
 
@@ -57,7 +72,7 @@ In a gene interaction network, each node represents a gene (Fig.2). These genes 
 Edges represent functional relationships between genes, which can include activation, inhibition, or co-expression. If one gene regulates another by increasing its expression (activation) or suppressing it (inhibition), this interaction is represented as a directed edge (with an arrow indicating direction). In co-expression networks, genes with similar expression patterns relate to undirected edges. For instance, in a signalling pathway, if TP53 activates BAX (a pro-apoptotic gene), the edge between them would represent activation.
 
 •TP53 → BAX (Activation: TP53 promotes BAX expression, leading to apoptosis).
-•TP53 → MDM2 (Inhibition: TP53 suppresses MDM2, which otherwise degrades TP53 itself).
+•TP53 ⊣ MDM2 (Inhibition: TP53 suppresses MDM2, which otherwise degrades TP53 itself). 
 
 ##### •	Types of Edges:
 •Activation (→): One gene promotes the expression of another.
