@@ -21,6 +21,20 @@
 
 &nbsp;
 
+##### About the Input File Format 
+
+To run the analysis, users must upload a gene interaction dataset in **. tsv** (tab-separated values) format. The file should include the following columns:
+
+**Gene1:** Source gene name
+
+**Gene2:** Target gene name
+
+**Weight:** Numerical value representing the interaction strength or confidence
+
+**Interaction Type:** e.g., Activation or Inhibition
+
+&nbsp;
+
 
 4. Click on the “Run Dijkstra’s Algorithm”. This will analyse the network topology of gene interactions.
 
