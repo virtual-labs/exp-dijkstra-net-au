@@ -1,0 +1,86 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "1. A network topology means:",
+      "answers": {
+        "a": "A method for encrypting network data",
+        "b": "The structure and arrangement of network components",
+        "c": "A protocol used for network communication",
+        "d": "The speed at which data transfers in a network"
+      },
+      
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+
+
+    {
+      "question": "2. The main goal of Dijkstra’s Algorithm is:",
+      "answers": {
+        "a": "Finding the shortest path in a weighted graph",
+        "b": "Encrypting data in a network",
+        "c": "Predicting network failures",
+        "d": "Finding the longest possible path in a network"
+      },
+      
+      "correctAnswer": "a",
+      "difficulty": "beginner"
+    },
+
+
+
+    {
+      "question": "3. An example of a biological network:",
+      "answers": {
+        "a": "The internet infrastructure",
+        "b": "A corporate LAN system",
+        "c": "A gene regulatory network",
+        "d": "A Bluetooth connection between two devices"
+      },
+      
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    },
+
+
+    {
+      "question": "4. A network topology in a system is defined as:",
+      "answers": {
+        "a": "The speed of data transfer",
+        "b": "The arrangement of nodes and connections",
+        "c": "The type of software used in a network",
+        "d": "The number of users connected to a network"
+      },
+      
+      "correctAnswer": "b",
+      "difficulty": "beginner"
+    },
+
+
+
+
+    {
+      "question": "5. Network topology that has a single central communication line shared by all nodes ?",
+      "answers": {
+        "a": "Star topology",
+        "b": "Mesh topology",
+        "c": "Bus topology",
+        "d": "Hybrid topology"
+      },
+     
+      "correctAnswer": "c",
+      "difficulty": "beginner"
+    }
+  ]
+}
+
+
+
+
+
+
+
+
+
+

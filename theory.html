@@ -1,0 +1,494 @@
+<!DOCTYPE html><html lang="en"><head>
+      <!--Google Tag Manager-->
+      <script class="gtm">
+        var dataLayer = [{
+        'labName': 'Virtual Lab',
+        'discipline': 'Test',
+        'college': 'AMRT',
+        'phase': 'Testing',
+        'expName': 'ANALYZE NETWORK TOPOLOGY BY IMPLEMENTING DIJKSTRA’S ALGORITHM',
+        'expShortName': 'dijkstra-net'
+        }];
+    
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5NMQ9NQ');
+      </script>
+      <!--End Google Tag Manager-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="" name="description">
+    <meta content="" name="author">
+    
+    	<meta name="experiment-short-name" content="dijkstra-net">
+    	<meta name="developer-institute" content="AMRT">
+    	<meta name="learning-unit" content="ANALYZE NETWORK TOPOLOGY BY IMPLEMENTING DIJKSTRA’S ALGORITHM">
+    	<meta name="task-name" content="Theory">
+    
+    <!-- For iPhone -->
+    <meta name="msapplication-TileColor" content="#4076e0">
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#4076e0">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#4076e0">
+    <title>Virtual Labs</title>
+    <link rel="shortcut icon" href="./assets/images/favicon.ico">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&amp;family=Raleway&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./assets/css/github-markdown.min.css">
+    <link rel="stylesheet" href="./assets/css/vlabs-style.css">
+    <link rel="stylesheet" href="./assets/css/toast.css">
+    <link rel="stylesheet" href="./assets/katex_assets/katex.min.css">
+    
+    <script src="./assets/js/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+      h1 {
+      font-size: 1.8rem;
+      }
+      h2 {
+      font-size: 1.4rem;
+      }
+      h3 {
+      font-size: 1.2rem;
+      }
+
+      h2, h3 {
+      font-weight: 800;
+      }
+    </style>
+    
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"></head>
+  <body class="p-0 container-fluid vlabs-page d-flex flex-column justify-content-between">
+      <!--Google Tag Manager (noscript)-->
+      <noscript class="gtm">
+        <iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-5NMQ9NQ" style="display:none;visibility:hidden" width="0">
+        </iframe>
+      </noscript>
+      <!--End Google Tag Manager (noscript)-->
+  
+      <header class="vlabs-header sticky-top bg-white">
+        <nav class="p-0 navbar navbar-light d-flex align-items-stretch">
+          
+          <button class="navbar-toggler px-4" type="button" onclick="toggle()">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <div class="d-flex justify-content-center">        
+            <a href="https://vlab.co.in" class="navbar-brand">
+              <img src="./assets/images/vlabs-color-small-moe.jpg" alt="vlabs logo" class="vlabs-logo">
+            </a>
+          </div>
+          
+          <div id="headerNavbar" class="d-none border-top flex-grow-1 d-lg-flex align-items-center justify-content-end">
+            <div class="svc-rating-display">
+                <rating-display spreadsheetid="1x12nhpp0QvnsA6x-O1sV4IA9SAbfVsq_wiexWkutOmU" sheetname="Experiment-Database" columnname="Experiment Short Name" columnvalue="dijkstra-net" imagesdirectory="/plugins/svc-rating/images/">
+                </rating-display>
+            </div>      <div class="svc-rating-submit">
+                <rating-submit title="Rate" this="" experiment="">
+                </rating-submit>
+            </div>      <bug-report id="bug-report" title="[BUG REPORT] ANALYZE NETWORK TOPOLOGY BY IMPLEMENTING DIJKSTRA’S ALGORITHM" page-type="text" context-info="{&quot;organisation&quot;:&quot;Virtual Labs&quot;,&quot;developer_institute&quot;:&quot;AMRT&quot;,&quot;expname&quot;:&quot;ANALYZE NETWORK TOPOLOGY BY IMPLEMENTING DIJKSTRA’S ALGORITHM&quot;,&quot;labname&quot;:&quot;Virtual Lab&quot;,&quot;phase&quot;:&quot;Testing&quot;}" checkbox-json="{&quot;text&quot;:[&quot;Insufficient Content&quot;],&quot;video&quot;:[&quot;Insufficient Content&quot;],&quot;assesment&quot;:[&quot;Incorrect Options&quot;,&quot;Incorrect Answer&quot;,&quot;Incorrect Question&quot;],&quot;assessment&quot;:[&quot;Incorrect Options&quot;,&quot;Incorrect Answer&quot;,&quot;Incorrect Question&quot;],&quot;simulation&quot;:[&quot;Simulation Not Working&quot;,&quot;Incorrect Results/Observations&quot;,&quot;Insufficient/Incorrect Instructions&quot;],&quot;DEFAULT&quot;:[&quot;Page Not Loading&quot;,&quot;Content Not Visible&quot;,&quot;Incorrect Content&quot;]}" button_style="border: none; color: #fff; background-color: #288ec8; text-align: center; font-size: 1.05rem; border-radius: 1em;padding: 0.6em 1.2em; margin: 0 10px" position="override" custom_button_class="v-button"></bug-report>
+          </div>
+        </nav>
+      </header>
+      <div class="container-fluid flex-fill d-flex flex-column vlabs-page-main">
+        <div class="row d-flex justify-content-between">
+          <div class="flex-column">
+          <div class="row py-4 px-4 breadcrumbs">
+          	<div class="title is-4 tools">Tools</div>
+          	<span class="mx-2">
+          		<i aria-hidden="true" class="fa fa-angle-right"></i>
+          	</span>
+          	<a href="performance-report.html" class="my-2 mx-3" target="_blank">
+          		<button class="v-button">Performance Tool</button>
+          	</a>
+          	<a href="validator-report.html" class="my-2 mx-3" target="_blank">
+          		<button class="v-button">Validation Tool</button>
+          	</a>
+          </div>
+          </div>
+        </div>
+        <div class="row flex-grow-1 d-flex flex-nowrap flex-column flex-lg-row">
+          <div class="modal fade popupmenu" id="popupMenu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">
+                              <a href="https://vlab.co.in" class="navbar-brand">
+                                  <img src="./assets/images/vlabs-color-small-moe.jpg" alt="vlabs logo" class="vlabs-logo">
+                              </a>
+                          </h5>
+                          <button type="button" class="btn-close align-self-center" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body nav-menu">
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="index.html" class="p-2 ">
+                                      Aim
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="theory.html" class="p-2  current-item ">
+                                      Theory
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="pretest.html" class="p-2 ">
+                                      Pretest
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="procedure.html" class="p-2 ">
+                                      Procedure
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="simulation.html" class="p-2 ">
+                                      Simulation
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="posttest.html" class="p-2 ">
+                                      Posttest
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="references.html" class="p-2 ">
+                                      References
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="contributors.html" class="p-2 ">
+                                      Contributors
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div>
+                                  <div class="d-flex nav-menu-body">
+                                      <a href="feedback.html" class="p-2 ">
+                                      Feedback
+                                      </a>
+                                      
+                                  </div>
+                                  <div id="t-" class="collapse">
+                                      <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                                      </div>
+                                  </div>
+                              </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="nav flex-column sidebar nav-menu flex-shrink-0 px-lg-4 align-items-center align-items-lg-start hidden d-none d-lg-flex" id="menu">
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="index.html" class="p-2 ">
+                        Aim
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="theory.html" class="p-2  current-item ">
+                        Theory
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="pretest.html" class="p-2 ">
+                        Pretest
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="procedure.html" class="p-2 ">
+                        Procedure
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="simulation.html" class="p-2 ">
+                        Simulation
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="posttest.html" class="p-2 ">
+                        Posttest
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="references.html" class="p-2 ">
+                        References
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="contributors.html" class="p-2 ">
+                        Contributors
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="d-flex nav-menu-body">
+                        <a href="feedback.html" class="p-2 ">
+                        Feedback
+                        </a>
+                        
+                    </div>
+                    <div id="t-" class="collapse">
+                        <div class="px-3 d-flex flex-column tasks align-items-center align-items-lg-start">
+                        </div>
+                    </div>
+                </div>
+          </div>          <div class="vlabs-page-content px-5 pb-4 flex-grow-1 markdown-body">
+            <div class="text-center fix-spacing">
+              <h2 id="analyze-network-topology-by-implementing-dijkstras-algorithm">Analyze Network Topology by Implementing Dijkstra’s Algorithm</h2>
+          
+            </div>
+              <h3 id="introduction">Introduction</h3>
+          <p>In today's advancing field of neuroscience and artificial intelligence, network topology plays a fundamental role in determining how information is transmitted, processed, and learned. Network topology describes the structural arrangement of interconnected entities such as neural pathways in the brain, ecological food webs, or molecular interaction networks. Learning the network topology allows the researchers to analyse complex systems, optimize resource flow, and improve the resilience of biological, physical, and computational networks. In case of human brain, neurons form complex networks where their connections, or synapses, define the flow of electrical and chemical signals. Neural network topology, which defines the structural arrangement of neurons and their connections, directly influences information processing, learning efficiency, and overall system performance. The topology of these neural connections influences cognitive functions such as perception, memory, and decision-making. Similarly, in artificial neural networks (ANNs), the arrangement of layers and neurons dictates the efficiency of learning and pattern recognition. By studying network topology, scientists can better understand how neurons communicate, leading to advancements in neuroscience, brain-computer interfaces, and deep learning architectures. Understanding these connections also helps in optimizing computational models that mimic human intelligence, paving the way for more efficient AI systems.</p>
+          <p>As the complexity of networks increases, analysing and optimizing the structure becomes essential for maintaining efficient functionality. Graph-based algorithms, particularly shortest path algorithms, play a crucial role in evaluating network efficiency by identifying the most optimal routes between interconnected nodes. The algorithms, such as Dijkstra’s Algorithm, provide a systematic approach to minimizing travel time, reducing communication delays, and optimizing resource distribution in various networked systems, from neural pathways in the brain to large-scale transportation and telecommunication networks. Understanding Dijkstra’s Algorithm in the context of network topology equips students and professionals with the ability to model, analyse, and optimize real-world networks. Given the increasing reliance on intelligent systems, IoT (Internet of Things), and smart cities, mastering this algorithm is highly relevant in today’s technological landscape. By learning Dijkstra’s Algorithm and its applications in network topology, students can gain essential problem-solving skills that are crucial for tackling modern engineering and scientific challenges.</p>
+          <h3 id="understanding-network-topology">Understanding Network Topology</h3>
+          <p>Network topology refers to the arrangement of nodes (such as computers, routers, or devices) and connections (such as cables or wireless links) in a network. It defines how data flows between nodes and plays a crucial role in determining the efficiency, scalability, and reliability of a network.
+          Network topology is broadly categorized into physical topology, which describes the actual layout of devices and connections, and logical topology, which represents how data moves within the network, regardless of the physical layout. A well-structured network topology ensures optimal communication, minimizes latency, and enhances fault tolerance, making it essential for applications such as internet communication, electrical power distribution, and even biological neural networks.</p>
+          <h3 id="types-of-network-topology">Types of Network Topology</h3>
+          <p>Different types of network topologies (Fig.1) serve distinct purposes based on their structure and efficiency.</p>
+          <h4 id="1point-to-point-topology">1.Point to Point Topology:</h4>
+          <p>Point-to-point topology is a type of topology that works on the functionality of the sender and receiver. It is the simplest communication between two nodes, in which one is the sender, and the other one is the receiver. Point-to-Point provides high bandwidth.</p>
+          <h4 id="2bus-topology">2.Bus Topology:</h4>
+          <p>All nodes share a single central communication line (bus). Data travels in both directions along the bus, but if the main cable fails, the entire network may be disrupted. This topology is cost-effective but has limited scalability.</p>
+          <h4 id="3star-topology">3.Star Topology:</h4>
+          <p>Every node is connected to a central hub or switch. The hub manages data transmission, ensuring efficient communication. It is highly reliable since individual node failures do not affect the entire network, but failure of the central hub can lead to network breakdown.</p>
+          <h4 id="4tree-topology">4.Tree Topology:</h4>
+          <p>The nodes are arranged in a hierarchical structure, where each node is connected to a parent node, forming a branching tree-like pattern. Data flows between nodes through this structured hierarchy, ensuring efficient communication and organization. This topology is commonly used in large networks due to its scalability, as additional nodes can be easily added without disrupting the existing structure.</p>
+          <h4 id="5ring-topology">5.Ring Topology:</h4>
+          <p>Nodes are connected in a circular manner, where data travels in one or both directions. While it provides equal data transmission opportunities to all nodes, a single point of failure can disrupt the entire network unless fault-tolerant mechanisms like dual rings are implemented.</p>
+          <h4 id="6mesh-topology">6.Mesh Topology:</h4>
+          <p>Every node is directly connected to multiple other nodes, ensuring high reliability and redundancy. It can be fully connected (where each node connects to every other node) or partially connected (where only some nodes have direct connections). While this topology enhances fault tolerance, it is costly due to the high number of connections required.</p>
+          <h4 id="7hybrid-topology">7.Hybrid Topology:</h4>
+          <p>A combination of two or more topologies, offering flexibility and scalability. For example, a tree topology integrates multiple star networks into a hierarchical structure, making it ideal for large-scale enterprise networks.</p>
+          <img src="images/1.png" title="">
+          
+          <p>Fig 1: Different types of Network Topology</p>
+          <p>Adapted from: <a href="https://networksimulationtools.com/network-topology-projects/">https://networksimulationtools.com/network-topology-projects/</a></p>
+          <p>&nbsp;</p>
+          <h2 id="dijkstras-algorithm-in-gene-interactions">Dijkstra’s Algorithm in Gene Interactions</h2>
+          <p>In biological systems, genes interact through complex networks, influencing each other's expression and regulating essential cellular processes. These gene interaction networks can be represented as graphs, where genes are nodes and interactions between them are edges with associated weights. The distance between genes in such networks is a crucial factor in understanding gene regulation, as it reflects the strength, probability, or biological significance of their interactions.Calculating gene interaction distances helps in identifying functionally related genes, detecting disease-associated pathways, and optimizing drug targeting strategies. </p>
+          <p>Dijkstra's Algorithm, introduced by Edsger Dijkstra in 1956, is a fundamental algorithm used to determine the shortest paths from a single source vertex to all other vertices in a weighted graph. This algorithm operates on the principle of a greedy strategy, continually expanding the set of vertices with known shortest path estimates until all vertices have been processed. Dijkstra’s Algorithm determines the shortest path in a weighted network, can be applied to these gene networks to compute the most efficient regulatory pathways. This is particularly useful in genomics, where understanding the shortest functional route between a mutated gene and its downstream effects can reveal critical disease mechanisms and potential therapeutic targets. By analysing gene interaction distances using Dijkstra’s Algorithm, researchers can uncover key regulatory genes, improve precision medicine approaches, and enhance our understanding of genetic disorders.</p>
+          <p>&nbsp;</p>
+          <h3 id="understanding-the-dijkstras-algorithm">Understanding the Dijkstra’s Algorithm</h3>
+          <p>Gene interaction networks are essential models used to represent how genes influence each other within biological systems. In these networks, genes are treated as nodes, and interactions such as activation or inhibition are represented as weighted edges. To analyse these networks effectively, especially to determine how signals propagate from one gene to another, algorithms from graph theory are employed. Among these, Dijkstra’s Algorithm is particularly well-suited for identifying the most efficient paths between genes in complex regulatory cascades.</p>
+          <p>Dijkstra’s Algorithm operates on a weighted directed graph and is designed to find the shortest path from a given source node to all other nodes in the network. This is achieved by maintaining a set of tentative distances from the source, the source itself starts with a distance of zero, while all other nodes begin with an infinite distance. At each step, the algorithm selects the unvisited node with the smallest known distance and updates the distances to its neighboring nodes using the formula:</p>
+          <img src="images/t1.png" title="">
+          
+          <p>where u is the current node and v is a neighbor. This iterative process continues until all nodes have been visited, resulting in a complete mapping of shortest interaction paths from the source. Applying Dijkstra’s Algorithm to gene interaction networks enables researchers to explore regulatory efficiency and influence within the system. For example, if TP53 inhibits MDM2 (denoted as TP53 ⊣ MDM2), this relationship can be modelled as a weighted edge in the graph. By assigning edge weights that reflect interaction strength or biological significance, the algorithm helps identify not only direct relationships but also the most effective regulatory routes through intermediate genes. This is particularly useful for understanding signalling cascades, detecting potential therapeutic targets, and tracing the pathways involved in disease mechanisms such as cancer or genetic disorders.</p>
+          <p>&nbsp;</p>
+          <h3 id="graph-theory-representation-of-gene-interaction-networks">Graph Theory Representation of Gene Interaction Networks</h3>
+          <p>Gene interaction networks can be effectively modelled using graph theory, a mathematical framework that helps represent complex biological relationships in an organized manner. In these networks, genes are represented as nodes (vertices), while interactions between genes—such as activation, inhibition, or co-expression—are represented as edges (connections). By using graph-based approaches, researchers can analyse regulatory relationships, identify key genes in biological pathways, and predict disease-related gene interactions.</p>
+          <h3 id="components-of-a-gene-interaction-network-in-graph-theory">Components of a Gene Interaction Network in Graph Theory</h3>
+          <h4 id="1----nodes-vertices">1.    Nodes (Vertices):</h4>
+          <p>In a gene interaction network, each node represents a gene (Fig.2). These genes can be classified based on their function, such as transcription factors, signalling molecules, or metabolic enzymes. For example, in a cancer-related gene network, nodes might include genes such as TP53 (a tumour suppressor), BRCA1, MYC, and BAX, MDM2(which regulates TP53). Nodes help in visualizing how different genes are functionally linked within a biological system.</p>
+          <h4 id="2----edges-connections">2.    Edges (Connections):</h4>
+          <p>Edges represent functional relationships between genes, which can include activation, inhibition, or co-expression. If one gene regulates another by increasing its expression (activation) or suppressing it (inhibition), this interaction is represented as a directed edge (with an arrow indicating direction). In co-expression networks, genes with similar expression patterns relate to undirected edges. For instance, in a signalling pathway, if TP53 activates BAX (a pro-apoptotic gene), the edge between them would represent activation.</p>
+          <p>•TP53 → BAX (Activation: TP53 promotes BAX expression, leading to apoptosis).
+          •TP53 ⊣ MDM2 (Inhibition: TP53 suppresses MDM2, which otherwise degrades TP53 itself). </p>
+          <h5 id="----types-of-edges">•    Types of Edges:</h5>
+          <p>•Activation (→): One gene promotes the expression of another.</p>
+          <p>•Inhibition (⊣): One gene suppresses the function of another.</p>
+          <p>•Co-expression (—): Two genes are expressed together in a correlated manner.</p>
+          <h4 id="3----directed-vs-undirected-graphs">3.    Directed vs. Undirected Graphs:</h4>
+          <p>A directed graph is used when interactions have a direction (e.g., Gene A activates Gene B but not vice versa). An undirected graph is used when interactions are mutual (e.g., genes that co-express together without a known directional effect).</p>
+          <p>•Directed: TP53 → BAX (TP53 regulates BAX, but not the other way around).</p>
+          <p>•Undirected: PPI networks where proteins bind but do not regulate each other.</p>
+          <h4 id="4----edge-weights">4.    Edge Weights:</h4>
+          <p>Edges are assigned weights, which represent the strength, probability, or biological significance of the interaction. These weights can be derived from gene expression data, protein-protein interaction scores, or other biological measurements. For example, in a regulatory network, the weight between TP53 and BAX could be based on the strength of activation observed in experimental data. A higher weight may indicate a stronger regulatory effect, while a lower weight could suggest a weaker or indirect interaction.</p>
+          <p>•TP53 → BAX (weight = 0.8): Strong activation of BAX by TP53.</p>
+          <p>•TP53 ⊣ MDM2 (weight = 0.6): Moderate inhibition of MDM2 by TP53.</p>
+          <p>•BAX → CASP3 (weight = 0.9): High activation of CASP3 by BAX.</p>
+          <img src="images/2.png" title="">
+          
+          <p>Fig.2: Representation of gene interaction network using Graph theory</p>
+          <p>&nbsp;</p>
+          <p>Gene interaction networks provide a structured way to analyze complex biological processes, and graph theory offers a mathematical foundation to study these interactions. By representing genes as nodes and their relationships as edges, researchers can visualize how genes regulate each other, predict functional pathways, and identify critical genetic components in diseases. The incorporation of Dijkstra’s Algorithm further enhances this analysis by enabling the identification of the shortest and most efficient regulatory pathways, which is crucial in understanding gene signaling cascades, metabolic pathways, and transcriptional regulation. This approach helps in pinpointing key regulatory genes that influence cellular functions, enabling targeted genetic interventions and advancing precision medicine.</p>
+          <p>The applications of gene interaction network analysis extend across various fields, including genomics, disease research, and drug discovery. In cancer research, for instance, shortest path algorithms help identify oncogenes and tumour suppressors, aiding in the development of targeted therapies. In pharmacogenomics, gene interaction networks assist in predicting drug responses by analyzing how genetic variations influence drug metabolism. Moreover, in systems biology, these network-based approaches facilitate the modelling of cellular responses to environmental changes, allowing scientists to understand disease mechanisms at a systems level. By integrating graph-based computational techniques into genomic research, we can accelerate the discovery of novel therapeutic strategies and deepen our understanding of the intricate biological networks governing life processes.</p>
+          
+          </div>
+          <div class="bug-report-mobile">
+              <bug-report id="bug-report" title="[BUG REPORT] ANALYZE NETWORK TOPOLOGY BY IMPLEMENTING DIJKSTRA’S ALGORITHM" page-type="text" context-info="{&quot;organisation&quot;:&quot;Virtual Labs&quot;,&quot;developer_institute&quot;:&quot;AMRT&quot;,&quot;expname&quot;:&quot;ANALYZE NETWORK TOPOLOGY BY IMPLEMENTING DIJKSTRA’S ALGORITHM&quot;,&quot;labname&quot;:&quot;Virtual Lab&quot;,&quot;phase&quot;:&quot;Testing&quot;}" checkbox-json="{&quot;text&quot;:[&quot;Insufficient Content&quot;],&quot;video&quot;:[&quot;Insufficient Content&quot;],&quot;assesment&quot;:[&quot;Incorrect Options&quot;,&quot;Incorrect Answer&quot;,&quot;Incorrect Question&quot;],&quot;assessment&quot;:[&quot;Incorrect Options&quot;,&quot;Incorrect Answer&quot;,&quot;Incorrect Question&quot;],&quot;simulation&quot;:[&quot;Simulation Not Working&quot;,&quot;Incorrect Results/Observations&quot;,&quot;Insufficient/Incorrect Instructions&quot;],&quot;DEFAULT&quot;:[&quot;Page Not Loading&quot;,&quot;Content Not Visible&quot;,&quot;Incorrect Content&quot;]}" position="override" button_style="
+                          position: fixed; 
+                          bottom: 20px;
+                          right: 20px;
+                          z-index: 1;
+                          font-size: 0;
+                          padding: 25px;
+                          border-radius: 50%;
+                          border: none;
+                          background-color: #0fc0ff;
+                          background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAAAXNSR0IArs4c6QAABiFJREFUaEPFmVuMFEUUhv/TM7uwoBGVyG22u7ZnYGG5REETo8RA1BhFIka8ABFf0PCgDxhFEpCLqAlE1OiTiSj4gFGjD0QBETQaEqPRICALSHdPV+8YQQJBA+wuO1PHdMNcWGame2ZWqMfuc/nq1KlT1acJAzhShjFVAUsYdL8G3HjRdA7gHwna5uahLR91dnaeb9QlNWrA1+/o6GjuPnv2DQ30LICKNhk4qLF63PK8g434rejATJhjKa6m9WazOzOZzKlKTmYAcc8QnxEwJwqIAk5STpvpZJwD1eTHjR43PKflhtkZ2+ovVxbaTJiTSVM/gzCYGIebu4fc1nmi80w5J0nDWA7Qq1GACzLMR3pV7pZMJtNdTs/UzelE6msAQ0BYb7vuS6VyZaGTungGhPfygkRYZ7nusv4OEonEDc2xuEfA0JqgATBhieO6b/fXE0IM1pgPECgVvGP+x/bksFDo1JhUguPZI8FMAz0+zzFtSjqd9p8VRlJvew7E79QKHNgEDjrSndRfNyXEGmasLK4KttmeOysU2hdIGm0vA/xKUZh32VLeW6psCrGMmO+uB5qIeEh398P7jx8/m9cP9pGm9vtpmQ9WjHDzUSkPRYJOpVKDuK9vP0Dj8goMfsSR8ot6IKPoJI22XUBpEHitLWUx6heNVC15pmHMItCXBYeKPUZsLlFWVYNQsVg2nU7v82XaW1tHZ4lGhUEztOlEKOQ4A/b5XHZyuc0aWqdNIbYSY3aY00veM/9te3KE/ywlxGpmrKpJP8h5ftCR8qtyeqHQY3XdVNAO5vMskvMGoRWrT9Ke90QlX6HQF6N16Y4OI28Ampn/jatcxx+ZzJ8NQScSiZZBWvzJwAhhJoCKUQhkaoVmnAZoJcC9WowOH02nf6gWl0iRLpQk3ZwOym0n0DVVg10rNAAF7Ig1xedYltUbtpCRoZO6Po1J+z7S6VcHdLCIClusLnfBgED7NVv1ZX8lYGKYwbrSo8Qogxc4Um5pOD1Mo20DgZ+PBFxPTpcYJuBUljDRdd1jdW/EcYnEmKwWSxNR05WADnwo2mB3pV+oGzopxDowlkYGbjDSF9ILpwd1D2mtdB2uuhEv3D+yfwG4/opCB5WVnrZk+v1yfqtCJ3X9TpC2pybggYj0BYcf29KdXwe0WArCuqsCzSxtT4qq0GareStIXXo3JjxGwNSrAh0crMFFq3jYEJ9wpPygkB6mYZwg0PCaAcsp1Hm4RPFtS5eK0LpxvqayVs3DlYIO7r0K8xUhlufRGKNrupLmFQcImsEZBhWaOxq4y5ZyRvXqIcSnYDwaZdkukRkgaGqK32RZ1on+/qt/buliFRFWXxXokonXBJ3S22Yz8darAc2sdjqed1/NddpvnMQUHwPRdTWBD0R6EBbbrltoGJX6D71PJ3V9E0h76kpCMzirNTWNLpfPPkcodNDXi6m9QLGqhE6gwUgzaKMj04sq+QmF9hVrjnYj0IwejmvtjuN4DUEbhjEqztgLoqCXEToagQavsKV8rZqPSJH2DaSEmMGMXZHSpE5oZnzneK7fL8w1DJ1sTU6CltvEwPj/88OWwRYx77Y9b3HD0KYuvqUL/Y5oo85I542TooesrnTF8yE0PUwh5hGj6tfxZTNpEBqKvUE9QyfW9bnV3t5+bV9P7yECxuTBFGOvRn5v5eJgTLzsUhUFmuGCcLJoBiNL/ZT7bVFYiWrrnTSM9QC9WBSmzy2ZnluqI4QYGQcWM/O8Qi+7EjSjB4xtTNqHjuf4HVHO20q1tiZZi/k/j1r8Z8zcRxyfanfZv/dnrJgeYw1jQo6xr+SOfY5j2oRq9VMIIWLA7QSMslz3raDGG8ZMJhoPpR1QmvrFdd2eSoFKGm0rAF5bfM97bCnvKp2c/64idFLXd4C0woWFwMstKV+PthPrk/L/R/aeOfcbCBOKq8uLLCk3llos/0tON+8hUt+U5O1Rao5PjtIcrA+3qOWvDEC78wFlIO1I1wyFTuptC0G8uWSZHrCl3N4oUFT9NiE2a4yFQW6DLUfKsaHQU0aMGHq2pWULM98Bpncdzy35yxXVdf1yftXK9vS8CUVjtBjWHHXdn0qt/Qf/x1JblU8EiAAAAABJRU5ErkJggg==);
+                          background-repeat: no-repeat;
+                          background-position: center;
+                          background-size: 30px;
+                          filter: invert(1);">
+              </bug-report>
+          </div>        </div>
+      </div>
+      <footer class="text-light pt-2 vlabs-footer d-flex flex-column">
+        <div class="row px-5 mx-0">
+          <div class="col d-flex flex-column">
+            <span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">Community Links</span>
+            <a href="https://www.sakshat.ac.in/" class="text-light">Sakshat Portal</a>
+            <a href="http://outreach.vlabs.ac.in/" class="text-light">Outreach Portal</a>
+            <a href="https://vlab.co.in/faq" class="text-light">FAQ: Virtual Labs</a>
+          </div>
+          <div class="col d-flex flex-column">
+            <span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">Contact Us</span>
+            <span> Phone: General Information: 011-26582050 </span>
+            <span> Email: support@vlabs.ac.in </span>
+          </div>
+          <div class="col d-flex flex-column">
+            <span class="font-weight-bold vlabs-footer-sect-name pb-2 mb-3">Follow Us</span>
+            <div class="social-links">
+      	<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #55acee;" href="https://twitter.com/TheVirtualLabs">
+      	  <i class="fab fa-twitter"></i>
+      	</a>
+      	<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #3b5998;" href="https://www.facebook.com/Virtual-Labs-IIT-Delhi-301510159983871/">
+      	  <i class="fab fa-facebook"></i>
+      	</a>
+      	<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #e52d27;" href="https://www.youtube.com/watch?v=asxRaOgk6a0">
+      	  <i class="fab fa-youtube"></i>
+      	</a>
+      	<a class="p-2 mt-1 mr-2 d-inline-flex justify-content-center align-items-center" style="background: #2867B2;" href="https://in.linkedin.com/in/virtual-labs-008ba9136">
+      	  <i class="fab fa-linkedin"></i>
+      	</a>
+            </div>
+          </div>
+        </div>
+        <div class="m-0 py-2 text-center" style="font-family: &quot;Open Sans&quot;, sans-serif; background: #212121;">
+          <a class="text-primary font-weight-bold" href="https://www.gnu.org/licenses/agpl-3.0.en.html"> AGPL 3.0 </a>
+          &nbsp;&amp;&nbsp;
+          <a class="text-primary font-weight-bold" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"> Creative Commons (CC BY-NC-SA 4.0) </a>
+        </div>
+      </footer>
+    <script src="./assets/js/toggleSidebar.js"></script>
+    <script src="./assets/js/event-handler.js"></script>
+
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register("sw.js");
+        });
+      }
+    </script>
+  
+
+<script type="module" src="https://cdn.vlabs.ac.in/bug-report/vlabs-bug-report.js"></script><script type="module" src="/exp-dijkstra-net-au/plugins/svc-rating/index.js"></script><script type="module" src="/exp-dijkstra-net-au/plugins/svc-rating/config.js"></script><script type="module" src="https://apis.google.com/js/api.js"></script></body></html>
